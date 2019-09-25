@@ -27,8 +27,23 @@ cc.view.setDesignResolutionSize = function (width, height, resolutionPolicy) {
     }
 
     this._setDesignResolutionSize(width, height, resolutionPolicy);
+
+    let scene = cc.director._scene;
+    if (scene != null) {
+        let element = scene.getDomElement();
+        let style = element.style;
+        
+        var tmp = [];
+
+        style.transformOrigin = '0% 100%';
+        
+        tmp = []
+        tmp.push('scale(');
+        tmp.push(this._scaleX / this._devicePixelRatio);
+        tmp.push(',');
+        tmp.push(this._scaleY / this._devicePixelRatio);
+        tmp.push(')');
+        style.transform = tmp.join('');
+    }
     
-    let style = cc.game.canvas.style;
-    style.width = width + 'px';
-    style.height = height + 'px';
 };

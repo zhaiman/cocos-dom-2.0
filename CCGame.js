@@ -38,8 +38,16 @@ cc.game._initRenderer = function () {
     let parent = this.canvas.parentNode;
     this.canvas.remove();
     let element = document.createElement('DIV');
+    element.setAttribute('id', 'GameCanvas');
+    element.setAttribute('oncontextmenu', 'event.preventDefault()');
+    element.setAttribute('tabindex', '99');
+    element.setAttribute('class', 'gameCanvas');
+    // element.setAttribute('width', '300');
+    // element.setAttribute('height', '150');
     let style = element.style;
     style.background = "black";
+    // style.width = '300px';
+    // style.height = '150px';
 
     parent.appendChild(element);
 
@@ -55,6 +63,7 @@ cc.game._runMainLoop = function () {
     var self = this,
         callback, config = self.config,
         director = cc.director,
+        game = cc.game,
         frameRate = config.frameRate;
 
     debug.setDisplayStats(config.showFPS);
@@ -63,12 +72,12 @@ cc.game._runMainLoop = function () {
         if (!self._paused) {
             self._intervalId = window.requestAnimFrame(callback);
             if (!CC_JSB && !CC_RUNTIME) {
-                if (cc.game.skip_step) {
-                    cc.game.skip_step = false;
+                if (game.skip_step) {
+                    game.skip_step = false;
                     return;
                 }
             }
-            cc.game.skip_step = true;
+            game.skip_step = true;
             director.mainLoop(now);
         }
     };

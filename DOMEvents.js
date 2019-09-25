@@ -19,7 +19,7 @@ function DOMClickCallback(element) {
     event.eventPhase = 2;
     event.currentTarget = node.node;
     cc.Component.EventHandler.emitEvents(node.clickEvents, event);
-    // this.node.emit('click', this);
+    node.node.emit('click', this);
 };
 _global.DOMClickCallback = DOMClickCallback;
 
