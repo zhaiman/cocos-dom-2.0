@@ -30,6 +30,10 @@ var components = [
     require('./CCButton'),
     require('./CCLabel'),
     require('./CCMask'),
+    require('./CCScrollBar'),
+    require('./CCScrollView'),
+    require('./CCPageViewIndicator'),
+    require('./CCPageView'),
     require('./CCRichText'),
 ];
 

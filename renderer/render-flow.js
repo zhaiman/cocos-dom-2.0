@@ -203,6 +203,12 @@ _proto._opacity = function (node) {
     let comp = node._renderComponent;
     if (comp && comp._updateColor) comp._updateColor();
 
+    let element = comp.getDomElement();
+    let style = element.style;
+    let color = node.color;
+    // style.backgroundColor = `rgba(${color.r}, ${color.g}, ${color.b}, ${color.a / 255})`;
+    style.opacity = color.a / 255;
+
     node._renderFlag &= ~OPACITY;
     this._next._func(node);
 

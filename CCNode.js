@@ -28,33 +28,16 @@ _proto.getDomElement = function (parentNode) {
 };
 
 _proto.setDomProps = function (element) {
-    // let style = element.style;
-    // style.position = 'absolute';
-    // style.pointerEvents = 'none';
-    // style.overflow = "hidden";
-
     element.setAttribute('class', 'node');
 };
 
-_proto.getLocalScaleX = function () {
-    if (this.parent !== null) {
-        return this.scaleX * this.parent.getLocalScaleX();
-    }
-    return this.scaleX;
-}
+_proto._cleanup = _proto.cleanup;
+_proto.cleanup = function () {
+    this._cleanup();
 
-_proto.getLocalScaleY = function () {
-    if (this.parent !== null) {
-        return this.scaleY * this.parent.getLocalScaleY();
+    if (this._domElement != null) {
+        this._domElement.remove();
     }
-    return this.scaleY;
-}
-
-_proto.getLocalAngle = function () {
-    if (this.parent !== null) {
-        return this.angle + this.parent.getLocalAngle();
-    }
-    return this.angle;
 }
 
 module.exports = cc.Node;

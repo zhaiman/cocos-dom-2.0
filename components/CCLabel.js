@@ -32,20 +32,11 @@ _proto.setDomProps = function (element) {
     }
     style.font = tmp.join(' ');
 
-    tmp = [];
-    tmp.push('rgba(');
-    tmp.push(attrib.color.r);
-    tmp.push(',');
-    tmp.push(attrib.color.g);
-    tmp.push(',');
-    tmp.push(attrib.color.b);
-    tmp.push(',');
-    tmp.push(attrib.color.a/255);
-    tmp.push(')');
-    style.color = tmp.join('');
+    let color = attrib.color;
+    style.color = `rgba(${color.r}, ${color.g}, ${color.b}, ${color.a/255})`;
 
     if (this.verticalAlign === 1) {
-        style.lineHeight = attrib.height + 'px';
+        style.lineHeight = `${attrib.height}px`;
     }
     style.textAlign = HorizontalAlign[this.horizontalAlign];
     style.verticalAlign = VerticalAlign[this.verticalAlign];
@@ -53,7 +44,7 @@ _proto.setDomProps = function (element) {
 
 _proto.updateRenderData = function () {
     let element = this.getDomElement()
-    element.innerHTML = this.string;
+    this.setDomProps(element);
 };
 
 module.exports = cc.Label;

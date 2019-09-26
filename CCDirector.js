@@ -24,14 +24,16 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.
  ****************************************************************************/
+const ComponentScheduler = require('./component-scheduler');
 const renderer = require('./renderer');
 const Obj = require('../cocos2d/core/platform/CCObject');
 const eventManager = require('../cocos2d/core/event-manager');
 
+let _proto = cc.Director.prototype;
  /*
   * Run main loop of director
   */
- cc.Director.prototype.mainLoop = CC_EDITOR ? function (deltaTime, updateAnimate) {
+_proto.mainLoop = CC_EDITOR ? function (deltaTime, updateAnimate) {
     this._deltaTime = deltaTime;
 
     // Update
